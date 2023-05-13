@@ -1,7 +1,9 @@
-import cv2
-from ultralytics import  YOLO
+from tkinter import Tk
+from tkinter.filedialog import askopenfilename
 
+from ultralytics import YOLO
 
+Tk().withdraw()
+filename = askopenfilename() # sh
 model = YOLO("plate_license_mt.pt")
-results = model.predict(show=True,  source= 0) #"C:\\Users\\USER\\Downloads\\test.MOV")
-cv2.waitKey(0)
+results = model.predict(show=True,  source= filename)
