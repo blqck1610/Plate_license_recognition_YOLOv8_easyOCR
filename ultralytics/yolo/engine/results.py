@@ -247,10 +247,10 @@ class Results(SimpleClass):
                 c, conf, id = int(d.cls), float(d.conf) if conf else None, None if d.id is None else int(d.id.item())
                 name = ('' if id is None else f'id:{id} ') + names[c]
                 # label = (f'{name} {conf:.2f}' if conf else name) if labels else None
-                #lay tensor chuyen doi thanh toa do de doc va nhan dien ki tu va them vao label
+
                 a = d.xyxy.detach().numpy().tolist()[0]
                 text_ocr = ocr_image(self.orig_img, a)
-                label = "license " + text_ocr
+                label = f'{conf:.2f}' + " : "  + text_ocr
                 annotator.box_label(d.xyxy.squeeze(), label, color=colors(c, True))
 
         if pred_probs is not None and show_probs:
